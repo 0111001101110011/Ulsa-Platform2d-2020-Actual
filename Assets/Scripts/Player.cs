@@ -8,9 +8,9 @@ public class Player : Character2D
 
     void FixedUpdate()
     {
-        if(GameplaySystem.JumpBtn)
+        if (GameplaySystem.JumpBtn)
         {
-            if(Grounding)
+            if (Grounding)
             {
                 anim.SetTrigger("jump");
                 GameplaySystem.Jump(rb2D, jumpForce);
@@ -26,13 +26,15 @@ public class Player : Character2D
 
     void LateUpdate()
     {
-        spr.flipX = FlipSprite;
+        //spr.flipX = FlipSprite;
+        IFlip flip = new PlayerFlip();
+        spr.flipX = flip.FlipSprite(GameplaySystem.Axis.x, spr);
         anim.SetFloat("axisX", Mathf.Abs(GameplaySystem.Axis.x));
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("collectable"))
+        if (other.CompareTag("collectable"))
         {
             Collectable collectable = other.GetComponent<Collectable>();
             Gamemanager.instance.Score.AddPoints(collectable.Points);
