@@ -17,8 +17,8 @@ public class Enemy : Character2D
     {
         transform.Translate(dir * moveSpeed * Time.deltaTime);
 
-        timer += Time.deltaTime;
-        if (timer >= delay)
+        timer +=  Time.deltaTime;
+        if(timer >= delay)
         {
             timer = 0f;
             //dir = dir == Vector2.right ? Vector2.left : Vector2.right;
@@ -34,4 +34,3 @@ public class Enemy : Character2D
         get => dir.x > 0 ? false : true;
     }*/
 }
-    
